@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: hsl(0, 0%, 98%);
+    --color-foreground: hsl(0, 0%, 15%);
+    --color-primary: hsl(0, 62%, 35%);
+    --color-primary-foreground: hsl(0, 0%, 100%);
+    --color-secondary: hsl(37, 51%, 77%);
+    --color-secondary-foreground: hsl(0, 62%, 20%);
+    --color-tertiary: hsl(33, 40%, 92%);
+    --color-tertiary-foreground: hsl(0, 62%, 20%);
+    --color-neutral: hsl(0, 0%, 98%);
+    --color-neutral-foreground: hsl(0, 0%, 15%);
+    --color-success: hsl(148, 45%, 42%);
+    --color-warning: hsl(33, 100%, 45%);
+    --color-muted: hsl(0, 0%, 94%);
+    --color-muted-foreground: hsl(0, 0%, 45%);
+    --color-accent: hsl(0, 0%, 94%);
+    --color-accent-foreground: hsl(0, 0%, 15%);
+    --color-border: hsl(0, 0%, 88%);
+    --color-input: hsl(0, 0%, 88%);
+    --color-ring: hsl(37, 51%, 77%);
+    --color-card: hsl(0, 0%, 100%);
+    --color-card-foreground: hsl(0, 0%, 15%);
+    --color-popover: hsl(0, 0%, 100%);
+    --color-popover-foreground: hsl(0, 0%, 15%);
+    --color-destructive: hsl(0, 84%, 60%);
+    --color-destructive-foreground: hsl(0, 0%, 100%);
+
+    --font-sans: "Lato", sans-serif;
+    --font-serif: "Playfair", serif;
+
+    --radius: 8px;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
