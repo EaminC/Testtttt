@@ -1,26 +1,32 @@
 import { useState, useEffect } from "react";
-import { MenuIcon, XIcon } from "lucide-react";
+import { MenuIcon, XIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("menu");
+  const [activeSection, setActiveSection] = useState("about");
+  const [navStartIndex, setNavStartIndex] = useState(0);
+  const itemsPerPage = 5;
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
       const sections = [
+        "about", // About Us
         "menu", // 国内受害者可以寻找的帮助
-        "reviews", // 国外成功案例分享
         "support", // 如何帮助身边的家暴受害者
         "global", // 国外成功的保护措施
+        "law-policy", // 法律与政策
+        "help-china", // 中国求助资源
+        "can-dv-change", // DV有可能改变吗 & FAQ
         "stories", // personal stories
         "news", // 无法被遗忘的--新闻总结
       ];
@@ -62,13 +68,44 @@ const Header = () => {
   };
 
   const navItems = [
+    { id: "about", label: "About Us" },
     { id: "menu", label: "Resources" },
-    { id: "reviews", label: "Success Stories" },
     { id: "support", label: "Support" },
     { id: "global", label: "Global" },
+    { id: "law-policy", label: "Law & Policy" },
+    { id: "help-china", label: "Help in China" },
+    { id: "can-dv-change", label: "DV Change & FAQ" },
     { id: "stories", label: "Personal Stories" },
     { id: "news", label: "News" },
   ];
+
+  const displayedItems = navItems.slice(navStartIndex, navStartIndex + itemsPerPage);
+  const maxStartIndex = Math.max(0, navItems.length - itemsPerPage);
+  const canGoLeft = navStartIndex > 0;
+  const canGoRight = navStartIndex < maxStartIndex;
+
+  const handlePrev = () => {
+    setNavStartIndex(Math.max(0, navStartIndex - 1));
+  };
+
+  const handleNext = () => {
+    setNavStartIndex(Math.min(maxStartIndex, navStartIndex + 1));
+  };
+
+  // 当激活的section改变时，确保它在可见范围内
+  useEffect(() => {
+    const activeIndex = navItems.findIndex((item) => item.id === activeSection);
+    if (activeIndex !== -1) {
+      setNavStartIndex((currentStart) => {
+        if (activeIndex < currentStart) {
+          return activeIndex;
+        } else if (activeIndex >= currentStart + itemsPerPage) {
+          return Math.max(0, activeIndex - itemsPerPage + 1);
+        }
+        return currentStart;
+      });
+    }
+  }, [activeSection, navItems.length]);
 
   return (
     <header
@@ -88,23 +125,47 @@ const Header = () => {
             silentnomorechina.com
           </button>
 
-          <NavigationMenu className="hidden lg:block">
-            <NavigationMenuList className="flex gap-2">
-              {navItems.map((item) => (
-                <NavigationMenuItem key={item.id}>
-                  <NavigationMenuLink
-                    onClick={() => scrollToSection(item.id)}
-                    className={`px-6 py-3 text-base font-normal cursor-pointer transition-colors ${
-                      activeSection === item.id
-                        ? "text-primary font-medium"
-                        : "text-foreground hover:text-primary"
-                    }`}
-                  >
-                    {item.label}
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
+          <NavigationMenu className="hidden lg:block flex-1">
+            <div className="flex items-center gap-2 justify-end">
+              {canGoLeft && (
+                <Button
+                  onClick={handlePrev}
+                  variant="ghost"
+                  size="sm"
+                  className="h-10 w-10 p-0 flex-shrink-0"
+                  aria-label="Previous navigation items"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </Button>
+              )}
+              <NavigationMenuList className="flex gap-2">
+                {displayedItems.map((item) => (
+                  <NavigationMenuItem key={item.id}>
+                    <NavigationMenuLink
+                      onClick={() => scrollToSection(item.id)}
+                      className={`px-4 py-3 text-sm font-normal cursor-pointer transition-colors whitespace-nowrap ${
+                        activeSection === item.id
+                          ? "text-primary font-medium"
+                          : "text-foreground hover:text-primary"
+                      }`}
+                    >
+                      {item.label}
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+              {canGoRight && (
+                <Button
+                  onClick={handleNext}
+                  variant="ghost"
+                  size="sm"
+                  className="h-10 w-10 p-0 flex-shrink-0"
+                  aria-label="Next navigation items"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </Button>
+              )}
+            </div>
           </NavigationMenu>
 
           <button
