@@ -1,6 +1,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const PersonalStoriesSection = () => {
+  const scrollToContact = () => {
+    const element = document.getElementById("contact");
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <section id="stories" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-8 lg:px-16">
@@ -63,9 +77,15 @@ const PersonalStoriesSection = () => {
               <p className="text-base leading-relaxed text-card-foreground mb-4 font-normal">
                 我们欢迎匿名的个人故事分享。分享经历可以帮助他人感到不再孤单，并学习安全的前进方式。
               </p>
-              <p className="text-sm leading-relaxed text-muted-foreground font-normal">
+              <p className="text-sm leading-relaxed text-muted-foreground mb-4 font-normal">
                 We welcome anonymized personal stories. Sharing experiences helps others feel less alone and learn safe ways forward.
               </p>
+              <button
+                onClick={scrollToContact}
+                className="inline-block px-5 py-3 bg-primary text-primary-foreground rounded-md border border-primary hover:bg-primary/90 transition-colors text-base font-normal"
+              >
+                分享你的故事 / Share Your Story
+              </button>
             </CardContent>
           </Card>
         </div>

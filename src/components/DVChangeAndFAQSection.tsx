@@ -104,18 +104,17 @@ const DVChangeAndFAQSection = () => {
         </div>
 
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-4 mb-8">
-            {canGoLeft && (
-              <Button
-                onClick={handlePrev}
-                variant="ghost"
-                size="lg"
-                className="h-12 w-12 p-0 flex-shrink-0"
-                aria-label="Previous"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </Button>
-            )}
+          <div className="flex items-center gap-6 mb-8">
+            <Button
+              onClick={handlePrev}
+              variant={canGoLeft ? "default" : "outline"}
+              size="lg"
+              disabled={!canGoLeft}
+              className="h-14 w-14 p-0 flex-shrink-0 flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Previous"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
             <div className="flex-1">
               <Card className="bg-card border-2 border-border">
                 <CardHeader>
@@ -162,17 +161,16 @@ const DVChangeAndFAQSection = () => {
                 </CardContent>
               </Card>
             </div>
-            {canGoRight && (
-              <Button
-                onClick={handleNext}
-                variant="ghost"
-                size="lg"
-                className="h-12 w-12 p-0 flex-shrink-0"
-                aria-label="Next"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </Button>
-            )}
+            <Button
+              onClick={handleNext}
+              variant={canGoRight ? "default" : "outline"}
+              size="lg"
+              disabled={!canGoRight}
+              className="h-14 w-14 p-0 flex-shrink-0 flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Next"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </Button>
           </div>
 
           <div className="text-center">
