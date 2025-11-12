@@ -1,4 +1,3 @@
-import { FacebookIcon, InstagramIcon, TwitterIcon } from "lucide-react";
 
 const Footer = () => {
   const scrollToSection = (sectionId: string) => {
@@ -71,31 +70,17 @@ const Footer = () => {
             </h4>
             <div className="flex gap-6 mb-6">
               <a
-                href="https://facebook.com"
+                href="https://www.xiaohongshu.com/website-login/captcha?redirectPath=https%3A%2F%2Fwww.xiaohongshu.com%2Fuser%2Fprofile%2F68b469f80000000019011935%3Fxsec_token%3DYBWXv9b_hZS9ayfXAhFL4d2JTJ2VCzQu_fD-lqoDblEww%3D%26xsec_source%3Dapp_share%26xhsshare%3DWeixinSession%26appuid%3D68b469f80000000019011935%26apptime%3D1762700197%26share_id%3D7a674a04478240fb974d6084641d1982%26exSource%3D&verifyUuid=483aeef6-0271-48f4-a444-e36cee6a9d91&verifyType=124&verifyBiz=461"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-secondary transition-colors"
-                aria-label="Visit our FacebookIcon page"
+                className="hover:opacity-80 transition-opacity"
+                aria-label="Visit our Xiaohongshu page"
               >
-                <FacebookIcon size={32} strokeWidth={1.5} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-secondary transition-colors"
-                aria-label="Visit our InstagramIcon page"
-              >
-                <InstagramIcon size={32} strokeWidth={1.5} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-secondary transition-colors"
-                aria-label="Visit our TwitterIcon page"
-              >
-                <TwitterIcon size={32} strokeWidth={1.5} />
+                <img 
+                  src="/images/rednote.jpeg" 
+                  alt="Xiaohongshu / RedNote" 
+                  className="h-10 w-10 rounded-lg object-cover"
+                />
               </a>
             </div>
             <p className="text-base text-gray-300 font-normal">

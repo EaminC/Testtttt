@@ -45,10 +45,16 @@ const GlobalMeasuresSection = () => {
         </div>
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-serif font-bold text-neutral-foreground mb-6">
-            Global Measures That Work
+            国外成功的保护措施
+            <br />
+            <span className="text-2xl lg:text-3xl text-neutral-foreground/80 font-normal">
+              Global Measures That Work
+            </span>
           </h2>
           <p className="text-lg text-neutral-foreground/80 max-w-3xl mx-auto font-normal">
-            Evidence‑based policies and services from around the world that improve safety and outcomes
+            来自世界各地的循证政策和服务，提高安全性和结果
+            <br />
+            <span className="text-base">Evidence‑based policies and services from around the world that improve safety and outcomes</span>
           </p>
         </div>
 
